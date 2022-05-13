@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+  <title>10DLC Batch UN-Linker</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <link rel="stylesheet" href="./css/bootstrap.min.css" type="text/css" />
+
+
+  <script src="./js/jquery.min.js"></script>
+  <script src="./js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+  <div style="margin: 10px auto 10px auto;height: 30px;max-width: 1000px;">
+    <div style="float: right;">
+      <span style="display: inline-flex;">
+        <div class="user" style="padding: 5px;margin: auto 0;">
+          Vonage User
+        </div>
+
+      </span>
+
+    </div>
+    <span style="float: left;margin: auto 0;padding: 5px;">
+      <label>Vonage 10DLC Batch UN-Linker</label>
+    </span>
+  </div><form method="POST" action="batch-unlink" enctype="multipart/form-data">
+  <hr style="border-color: darkgray;border-width: 1px;">
+  <div style="display: grid; padding: 20px; min-width: 300px; max-width:600px; margin: 0 auto;">
+    
+      <div style="display:contents">
+        <label for="url-endpoint">URL to send DELETE request</label>
+        <input id="url-endpoint" name="url-endpoint" type="url" value=<%= default_url %> style="max-width: 600px;min-width: 60px;" />
+      </div>
+
+      <br>
+      <div style="display:contents">
+        <label for="apikey">API KEY</label>
+        <input id="apikey" name="apikey" type="text" style="max-width: 600px;min-width: 60px;" />
+      </div>
+
+      <br>
+      <div style="display:contents">
+        <label for="apisecret">API Secret</label>
+        <input id="apisecret" name="apisecret" type="text" style="max-width: 600px;min-width: 60px;" />
+      </div>
+
+      <br>
+      <div style="display:contents">
+        <label for="auth-token">10DLC Authorization Token ( <i> base64(API_KEY:API_SECRET) )</i></label>
+        <input id="auth-token" name="auth-token" type="text" style="max-width: 600px;min-width: 60px;" />
+      </div>
+
+      <br>
+      <div style="display:contents">
+        <label for="email">Email to send results</label>
+        <input id="email" name="email" type="email" style="max-width: 600px;min-width: 60px;" />
+      </div>
+
+      <br>
+      <div style="display:contents">
+        <label for="csv_upload">CSV File</label>
+
+        <input id="csv_upload" name="csv_upload" type="file" accept=".csv">
+
+      </div>
+
+      <br>
+      <input type="submit">
+
+    </form>
+    <!-- Use if not using bootstrap-select and you want a select all/deselect all button-->
+    <!-- <button id="select_all_countries">Select All</button>&nbsp;<button id="deselect_all_countries">Reset</button> -->
+
+
+    <hr style="border-color: darkgray;border-width: 1px;">
+
+  </div>
+  <script>
+
+
+
+    //$.ajaxSetup({
+    //  headers: {
+    //    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //  }
+    //});
+
+    function serealizeSelects(select) {
+      var array = [];
+      select.each(function () { array.push($(this).val()) });
+      return array;
+    }
+    // //Use this if you want a custom button for select or deselect (like if you are not using bootstrap-select)
+    //
+    // $('#select_all_countries').click(function () {
+    //   $('#countryList option').prop('selected', true);
+    // });
+
+    // $('#deselect_all_countries').click(function () {
+    //   $('#countryList option').prop('selected', false);
+    // });
+    $("#apikey,#apisecret").on("input", function () {
+      //base64 encode apikey+":"+apisecret
+      auth = btoa($("#apikey").val() + ":" + $("#apisecret").val())
+      $("#auth-token").val(auth)
+    });
+    $("#set").click(function () {
+
+    });
+  </script>
+
+
+
+</body>
+
+</html>
