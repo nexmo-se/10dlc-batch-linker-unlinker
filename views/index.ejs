@@ -1,0 +1,138 @@
+<div style="display: grid; padding: 20px; min-width: 600px; max-width:900px;">
+
+  <article class="markdown-body entry-content container-lg" itemprop="text">
+    <h1 dir="auto"><a id="user-content-neru-10dlc-batch-linkerunliner" class="anchor" aria-hidden="true"
+        href="#neru-10dlc-batch-linkerunliner"></a>Neru 10DLC Batch Linker/Unliner</h1>
+    <p dir="auto"><strong>Batch Linker:</strong> <a
+        href="https://api-ap.vonage.com/v1/neru/i/neru-3b8791fd-neru-batch-url-dev/linker"
+        rel="nofollow">https://api-ap.vonage.com/v1/neru/i/neru-3b8791fd-neru-batch-url-dev/linker</a></p>
+    <p dir="auto"><strong>Batch Unlinker:</strong> <a
+        href="https://api-ap.vonage.com/v1/neru/i/neru-3b8791fd-neru-batch-url-dev/unlinker"
+        rel="nofollow">https://api-ap.vonage.com/v1/neru/i/neru-3b8791fd-neru-batch-url-dev/unlinker</a></p>
+    <p dir="auto"><strong>Simple UI</strong><br>
+      <a target="_blank" rel="noopener noreferrer"
+        href="https://raw.githubusercontent.com/nexmo-se/10dlc-batch-linker-unlinker/main/ui.png?token=GHSAT0AAAAAABT6ZODMHEJSYTJQEYLGLLZIYUBNXZQ"><img
+          src="https://raw.githubusercontent.com/nexmo-se/10dlc-batch-linker-unlinker/main/ui.png?token=GHSAT0AAAAAABT6ZODMHEJSYTJQEYLGLLZIYUBNXZQ"
+          alt="enter image description here" style="max-width: 900px;"></a></p>
+    <p dir="auto">Auth token is automatically calculated based on api key and secret, but can be overridden if needed.
+    </p>
+    <p dir="auto">API URL defaults to <a href="https://api-eu.vonage.com/v1/10dlc/"
+        rel="nofollow">https://api-eu.vonage.com/v1/10dlc/</a> but can be overridden as well</p>
+    <p dir="auto"><strong>Configuraion</strong>
+      Configuration are via a ".env" file <em>(rename .env-sample to .env)</em></p>
+    <p dir="auto">.env Content:</p>
+    <div class="snippet-clipboard-content notranslate position-relative overflow-auto">
+      <pre class="notranslate"><code>10DLC_API_URL=https://api-eu.vonage.com/v1/10dlc/
+SMTP_HOST=smtp-relay.sendinblue.com
+SMTP_USERNAME=
+SMTP_PASSWORD=
+SMTP_PORT=587
+</code></pre>
+      <div class="zeroclipboard-container position-absolute right-0 top-0">
+        <clipboard-copy aria-label="Copy" class="ClipboardButton btn js-clipboard-copy m-2 p-0 tooltipped-no-delay"
+          data-copy-feedback="Copied!" data-tooltip-direction="w" value="10DLC_API_URL=https://api-eu.vonage.com/v1/10dlc/
+SMTP_HOST=smtp-relay.sendinblue.com
+SMTP_USERNAME=
+SMTP_PASSWORD=
+SMTP_PORT=587" tabindex="0" role="button">
+          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"
+            class="octicon octicon-copy js-clipboard-copy-icon m-2">
+            <path fill-rule="evenodd"
+              d="M0 6.75C0 5.784.784 5 1.75 5h1.5a.75.75 0 010 1.5h-1.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-1.5a.75.75 0 011.5 0v1.5A1.75 1.75 0 019.25 16h-7.5A1.75 1.75 0 010 14.25v-7.5z">
+            </path>
+            <path fill-rule="evenodd"
+              d="M5 1.75C5 .784 5.784 0 6.75 0h7.5C15.216 0 16 .784 16 1.75v7.5A1.75 1.75 0 0114.25 11h-7.5A1.75 1.75 0 015 9.25v-7.5zm1.75-.25a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h7.5a.25.25 0 00.25-.25v-7.5a.25.25 0 00-.25-.25h-7.5z">
+            </path>
+          </svg>
+          <svg aria-hidden="true" height="16" viewBox="0 0 16 16" version="1.1" width="16" data-view-component="true"
+            class="octicon octicon-check js-clipboard-check-icon color-fg-success d-none m-2">
+            <path fill-rule="evenodd"
+              d="M13.78 4.22a.75.75 0 010 1.06l-7.25 7.25a.75.75 0 01-1.06 0L2.22 9.28a.75.75 0 011.06-1.06L6 10.94l6.72-6.72a.75.75 0 011.06 0z">
+            </path>
+          </svg>
+        </clipboard-copy>
+      </div>
+    </div>
+    <p dir="auto">You can configure the emailer here and the default 10dlc API endpoint</p>
+    <p dir="auto"><strong>Input CSV Format</strong><br>
+      The CSV format for the input is as follows</p>
+    <table width=900px border=1 padding=5px>
+      <thead>
+        <tr>
+          <th>number</th>
+          <th>brand_id</th>
+          <th>campaign_id</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1234567890</td>
+          <td>BRD-123</td>
+          <td>CMP-456</td>
+        </tr>
+      </tbody>
+    </table>
+    <p dir="auto">Note that the headers are required</p>
+    <p dir="auto"><strong>Output CSV Format</strong><br>
+      Note that the process is asynchronous, so the CSV file will be mailed after the process
+      The CSV format for the outputis as follows</p>
+      <table width=900px border=1 padding=5px>
+      <thead>
+        <tr>
+          <th>number</th>
+          <th>brand_id</th>
+          <th>campaign_id</th>
+          <th>method</th>
+          <th>url</th>
+          <th>payload</th>
+          <th>result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1234567890</td>
+          <td>BRD-123</td>
+          <td>CMP-456</td>
+          <td>POST</td>
+          <td><a href="http://lookaddit.urzo.online/dump//brands/BRD-123/campaigns/CMP-456/numbers"
+              rel="nofollow">http://lookaddit.urzo.online/dump//brands/BRD-123/campaigns/CMP-456/numbers</a></td>
+          <td>{""country"":""US"",""number"":""1234567890""}</td>
+          <td>"{""args"":""ImmutableMultiDict([])"",""form"":""ImmutableMultiDict([])"",""headers"":""Content-Type:
+            application/json\r\nContent-Length: 31\r\nX-Forwarded-For: 13.251.207.33, 172.70.143.81\r\nHost:
+            lookaddit.urzo.online\r\nConnection: upgrade\r\nAccept-Encoding: gzip\r\nCf-Ipcountry: SG\r\nCf-Ray:
+            70adb05f28b546a9-SIN\r\nX-Forwarded-Proto: http\r\nCf-Visitor: {""scheme"":""http""}\r\nAccept:
+            application/json, text/plain, <em>/</em>\r\nAuthorization: Basic YXNkZmFzZjphc2RmYXNkZnNh\r\nUser-Agent:
+            axios/0.27.2\r\nCf-Connecting-Ip: 13.251.207.33\r\nCdn-Loop: cloudflare\r\n\r\n"",""json"":""{'country':
+            'US', 'number': '1234567890'}"",""slug1"":""BRD-123"",""slug2"":""CMP-456""}"</td>
+        </tr>
+      </tbody>
+    </table>
+    <p dir="auto">Note the result will show failures as well. Sample below:</p>
+    <table width=900px border=1 padding=5px>
+      <thead>
+        <tr>
+          <th>number</th>
+          <th>brand_id</th>
+          <th>campaign_id</th>
+          <th>method</th>
+          <th>url</th>
+          <th>payload</th>
+          <th>result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>11111111</td>
+          <td>111brand</td>
+          <td>111campaign</td>
+          <td>POST</td>
+          <td><a href="https://api-eu.vonage.com/v1/10dlc//brands/111brand/campaigns/111brandcampaign/numbers"
+              rel="nofollow">https://api-eu.vonage.com/v1/10dlc//brands/111brand/campaigns/111brandcampaign/numbers</a>
+          </td>
+          <td>"{""country"":""US"",""number"":""11111111""}"</td>
+          <td>AxiosError: Request failed with status code 401</td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+</div>

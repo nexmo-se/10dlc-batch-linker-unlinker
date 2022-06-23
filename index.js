@@ -99,7 +99,10 @@ router.use("/csv/", express.static(join(__dirname, "tmp/download")));
 
 //see if service is live
 router.get('/', async (req, res, next) => {
-    res.send("Vonage Proxy Service");
+    cons.ejs(path + "index.ejs", { default_url: process.env['10DLC_API_URL'] }, function (err, html) {
+        if (err) throw err;
+        res.send(html);
+    });
 });
 
 
