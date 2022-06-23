@@ -136,11 +136,11 @@ router.post('/batch-link', upload.single('csv_upload'), async (req, res, next) =
             }
         }).then(function (response) {
             row_data["payload"]=JSON.stringify(payload)
-            row_data["data"]=response.data
+            row_data["data"]=JSON.stringify(response.data)
             return row_data
         }).catch(function (error) {
             row_data["payload"]=JSON.stringify(payload)
-            row_data["data"]=error
+            row_data["data"]=JSON.stringify(error)
             return row_data
         });
     }
@@ -207,11 +207,11 @@ router.post('/batch-unlink', upload.single('csv_upload'), async (req, res, next)
             }
         }).then(function (response) {
             row_data["payload"]=JSON.stringify(payload)
-            row_data["data"]=response.data
+            row_data["data"]=JSON.stringify(response.data)
             return row_data
         }).catch(function (error) {
             row_data["payload"]=JSON.stringify(payload)
-            row_data["data"]=error
+            row_data["data"]=JSON.stringify(error)
             return row_data
         });
     }
